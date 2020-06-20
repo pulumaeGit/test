@@ -1,0 +1,1 @@
+gcc neonmflops.c cpuidc.c -lm -lrt -O3 -mcpu=cortex-a7 -mfloat-abi=hard -mfpu=neon-vfpv4 -funsafe-math-optimizations -lpthread -o MP-NeonMFLOPS
