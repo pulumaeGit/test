@@ -1,0 +1,4 @@
+1. OpenVPN 실행 상태
+  - systemctl status openvpn.service
+  
+2. 
