@@ -1,1 +1,1 @@
-252.259.217.218.conect_server
+252.259.217.218.connect_server
