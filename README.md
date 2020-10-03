@@ -1,2 +1,2 @@
-252.259.217.218.connect_vpn
+252.259.217.218.connect_server
 
