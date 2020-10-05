@@ -1,0 +1,107 @@
+cmake_minimum_required(VERSION 2.8.11) 
+
+set(PROJECT_NAME lane_detection)
+project(${PROJECT_NAME})
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -std=c++11")
+
+
+#########################################################################################
+#########################################################################################
+#########################################################################################
+
+#
+# Usage
+#     FILTER_SOURCES()
+#
+# Filters HEADER_FILES_1, EXPORT_HEADER_FILES_1 and SOURCE_FILES_1 variables to remove Win or Linux files
+# Creates HEADER_FILES, EXPORT_HEADER_FILES and SOURCE_FILES variables
+#
+macro( FILTER_SOURCES FILER_OUT_REGEXP )
+
+
+      foreach(FILE ${HEADER_FILES_TMP})
+          if ( NOT FILE MATCHES ^resource[.]h$|^stdafx[.]h$|_windows|_win32 AND NOT FILE MATCHES ${FILER_OUT_REGEXP})
+                  list(APPEND HEADER_FILES_TMP_2 ${FILE})
+          endif ( NOT FILE MATCHES ^resource[.]h$|^stdafx[.]h$|_windows|_win32 AND NOT FILE MATCHES ${FILER_OUT_REGEXP})
+      endforeach(FILE)
+
+      foreach(FILE ${SOURCE_FILES_TMP})
+          if ( NOT FILE MATCHES ^stdafx[.]c.*$|_windows|_win32 AND NOT FILE MATCHES ${FILER_OUT_REGEXP})
+                  list(APPEND SOURCE_FILES_TMP_2 ${FILE})
+          endif ( NOT FILE MATCHES ^stdafx[.]c.*$|_windows|_win32 AND NOT FILE MATCHES ${FILER_OUT_REGEXP})
+      endforeach(FILE)
+
+      if (DEFINED HEADER_FILES_TMP_2)
+          set (HEADER_FILES ${HEADER_FILES_TMP_2} PARENT_SCOPE)
+      endif (DEFINED HEADER_FILES_TMP_2)
+
+      if (DEFINED SOURCE_FILES_TMP_2)
+          set (SOURCE_FILES ${SOURCE_FILES_TMP_2} PARENT_SCOPE)
+      endif (DEFINED SOURCE_FILES_TMP_2)
+
+endmacro( FILTER_SOURCES )
+
+
+function ( FIND_SOURCES )
+    file( GLOB HEADER_FILES_TMP RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.h )
+    file( GLOB SOURCE_FILES_TMP RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.c )
+
+	if (${ARGC} EQUAL 0 )
+        set( FILER_OUT_REGEXP "not used regexp" )
+    else()
+        set( FILER_OUT_REGEXP ${ARGV0} )
+    endif (${ARGC} EQUAL  0 )
+
+    FILTER_SOURCES( ${FILER_OUT_REGEXP} )
+endfunction ( FIND_SOURCES )
+
+IF (CMAKE_SYSTEM_PROCESSOR MATCHES "x86_64")
+	message("-- Looking for x86 64bits -- found")
+	add_definitions( -DHOST_CPU_x86_64)
+ELSEIF (CMAKE_SYSTEM_PROCESSOR MATCHES "armv7l")
+	message("-- Looking for ARM armv7l -- found")
+	add_definitions( -DHOST_CPU_ARM7_32)
+	add_definitions( -DHOST_CPU_ARM)
+ELSEIF (CMAKE_SYSTEM_PROCESSOR MATCHES "aarch64")
+	message("-- Looking for ARM aarch64 -- found")
+	add_definitions( -DHOST_CPU_AARCH64)
+	add_definitions( -DHOST_CPU_ARM)
+ENDIF()
+
+#########################################################################################
+#########################################################################################
+#########################################################################################
+
+FIND_SOURCES()
+
+
+include_directories( 
+    BEFORE
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_SOURCE_DIR}/include
+	)
+
+find_package( OpenCV REQUIRED )
+INCLUDE_DIRECTORIES( ${OpenCV_INCLUDE_DIRS} )
+
+link_directories(
+						${CMAKE_SOURCE_DIR}/libs
+						/usr/lib
+						/usr/lib/x86_64-linux-gnu
+						)
+SET (CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin )
+
+
+list(APPEND file_list "test_polyfit")
+
+FOREACH(file_name ${file_list})
+	set( TARGET_NAME ${file_name} )
+	
+	add_executable ( ${TARGET_NAME} ${SOURCE_FILES} ${TARGET_NAME}.c )
+	
+	target_link_libraries( ${TARGET_NAME} 
+			${OpenCV_LIBS} 
+			pthread )
+ 
+ENDFOREACH()
