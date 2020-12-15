@@ -1,4 +1,5 @@
 1. OpenVPN 실행 상태
   - systemctl status openvpn.service
   
-2. 
+2. Crontab 에러 발생시 메일 로그 확인 (mail 설치 필요)
+  - tail -f /var/spool/mail/root
