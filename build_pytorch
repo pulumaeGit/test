@@ -1,3 +1,5 @@
+# https://medium.com/repro-repo/build-pytorch-from-source-on-ubuntu-18-04-1c5556ca8fbf
+
 git clone https://github.com/pytorch/pytorch
 pip install numpy pyyaml mkl mkl-include setuptools cmake cffi typing
 sudo apt-get install libomp-dev
