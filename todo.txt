@@ -1,2 +1,7 @@
 https://www.youtube.com/watch?v=Gs5HlHKqAYQ
 https://www.codeproject.com/Articles/5279601/Setting-Up-an-Android-AI-Development-Environment
+
+Reinforcement Learning
+- https://dnddnjs.gitbooks.io/rl/content/
+- https://paperswithcode.com/task/multi-agent-reinforcement-learning
+
