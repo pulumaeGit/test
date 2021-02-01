@@ -5,3 +5,25 @@ Reinforcement Learning
 - https://dnddnjs.gitbooks.io/rl/content/
 - https://paperswithcode.com/task/multi-agent-reinforcement-learning
 
+Binary Neural Network
+- https://github.com/JDAI-CV/dabnn
+
+Model Conversion
+- https://www.programmersought.com/article/57381509591/
+
+
+ONNX Conversion
+- https://pytorch.org/tutorials/advanced/super_resolution_with_caffe2.html
+- https://github.com/Tencent/ncnn/blob/master/docs/how-to-use-and-FAQ/use-ncnn-with-pytorch-or-onnx.md
+- https://github.com/daquexian/onnx-simplifier
+- https://www.programmersought.com/article/74464677705/
+- https://jangjy.tistory.com/354
+- https://hellownd.tistory.com/entry/pytorch-to-onnx-onnx-to-tensorflow-%EB%AA%A8%EB%8D%B8-%EB%B3%80%ED%99%98-%EC%A3%BC%EC%9D%98%EC%82%AC%ED%95%AD
+- https://thenewstack.io/tutorial-train-a-deep-learning-model-in-pytorch-and-export-it-to-onnx/
+
+
+
+ONNX => NNAPI
+- https://github.com/JDAI-CV/DNNLibrary
+- 
+
