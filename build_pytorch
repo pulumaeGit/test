@@ -6,4 +6,4 @@ sudo apt-get install libomp-dev
 cd ~/pytorch
 export USE_CUDA=0 USE_CUDNN=0 USE_MKLDNN=1
 git submodule update --init --recursive
-python setup.py install
+python setup.py build
