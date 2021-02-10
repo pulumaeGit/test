@@ -27,3 +27,5 @@ ONNX => NNAPI
 - https://github.com/JDAI-CV/DNNLibrary
 - 
 
+TinyML
+- https://github.com/hollance/TinyML-HelloWorld-ArduinoUno
