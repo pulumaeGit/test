@@ -1,4 +1,5 @@
 Using dfu-util 
+
 Flashing a .dfu file to the device:
 $ dfu-util -a 0 -D boot_image.dfu
 
