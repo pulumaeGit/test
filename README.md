@@ -1,1 +1,1 @@
-252.259.217.218..system_power_off
+252.259.217.218.connect_server
